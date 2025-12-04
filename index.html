@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KopyKitaab | Best Home Tutors in Lucknow</title>
+    <meta name="description" content="Connect with the best home tutors in Lucknow. Free for parents. Verified tutors for all subjects and classes.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Lightweight icon library) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS (via CDN for standalone functionality) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        heading: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',    // Slate 900
+                            primary: '#2563eb', // Blue 600
+                            accent: '#06b6d4',  // Cyan 500
+                            light: '#f8fafc',   // Slate 50
+                            yellow: '#f59e0b',  // Amber 500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-700 bg-brand-light antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="ph-fill ph-book-open-text text-3xl text-brand-primary"></i>
+                    <span class="font-heading font-extrabold text-2xl tracking-tight text-slate-900">Kopy<span class="text-brand-primary">Kitaab</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#parents" class="text-slate-600 hover:text-brand-primary font-semibold transition">For Parents</a>
+                    <a href="#why-us" class="text-slate-600 hover:text-brand-primary font-semibold transition">Why Us</a>
+                    <a href="#tutors" class="text-slate-600 hover:text-brand-primary font-semibold transition">Become a Tutor</a>
+                    <a href="https://wa.me/919695166277" class="bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-full font-bold transition flex items-center gap-2 shadow-lg shadow-green-500/30">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Chat Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-primary focus:outline-none p-2">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay & Sidebar -->
+    <!-- Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-slate-900/60 z-40 transition-opacity duration-300 opacity-0 pointer-events-none backdrop-blur-sm md:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[280px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
+        <!-- Sidebar Header -->
+        <div class="p-5 flex justify-between items-center border-b border-slate-100">
+            <span class="font-heading font-bold text-lg text-slate-800">Menu</span>
+            <button id="mobile-menu-close" class="text-slate-500 hover:text-red-500 transition p-2 rounded-full hover:bg-slate-100">
+                <i class="ph ph-x text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Sidebar Links -->
+        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-3">
+            <a href="#parents" class="block px-4 py-3 rounded-xl text-lg font-medium text-slate-700 hover:bg-blue-50 hover:text-brand-primary transition flex items-center gap-3">
+                <i class="ph ph-users text-xl"></i> For Parents
+            </a>
+            <a href="#why-us" class="block px-4 py-3 rounded-xl text-lg font-medium text-slate-700 hover:bg-blue-50 hover:text-brand-primary transition flex items-center gap-3">
+                <i class="ph ph-question text-xl"></i> Why Us
+            </a>
+            <a href="#tutors" class="block px-4 py-3 rounded-xl text-lg font-medium text-slate-700 hover:bg-blue-50 hover:text-brand-primary transition flex items-center gap-3">
+                <i class="ph ph-chalkboard-teacher text-xl"></i> For Tutors
+            </a>
+        </div>
+
+        <!-- Sidebar Footer Actions -->
+        <div class="p-5 border-t border-slate-100 space-y-3 bg-slate-50">
+            <a href="tel:+919695166277" class="w-full text-center bg-brand-primary text-white py-3 rounded-xl font-bold flex justify-center items-center gap-2 hover:bg-blue-700 transition shadow-lg shadow-blue-500/20">
+                <i class="ph-fill ph-phone-call"></i> Call Now
+            </a>
+            <a href="https://wa.me/919695166277" class="w-full text-center bg-green-500 text-white py-3 rounded-xl font-bold flex justify-center items-center gap-2 hover:bg-green-600 transition shadow-lg shadow-green-500/20">
+                <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="blob bg-blue-200 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/4"></div>
+        <div class="blob bg-cyan-200 w-80 h-80 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3 animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-brand-primary text-sm font-bold tracking-wide uppercase mb-4 border border-blue-100">
+                #1 Tutoring Agency in Lucknow
+            </span>
+            <h1 class="text-5xl md:text-7xl font-heading font-extrabold text-slate-900 tracking-tight mb-6">
+                Find the Perfect <br class="hidden md:block" />
+                <span class="gradient-text">Home Tutor</span> Today.
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-600">
+                Connect with verified, experienced tutors for all subjects and classes.
+                <br>
+                <span class="font-bold text-slate-900">Zero charges for parents.</span>
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:+919695166277" class="group relative px-8 py-4 bg-brand-primary hover:bg-blue-700 text-white text-lg font-bold rounded-xl shadow-xl shadow-blue-500/30 transition-all hover:-translate-y-1 overflow-hidden">
+                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                    <span class="flex items-center justify-center gap-3">
+                        <i class="ph-fill ph-phone-call"></i> Call 9695166277
+                    </span>
+                </a>
+                <a href="https://wa.me/919695166277?text=Hi,%20I%20am%20looking%20for%20a%20tutor." class="px-8 py-4 bg-white border-2 border-slate-200 hover:border-green-500 hover:text-green-600 text-slate-700 text-lg font-bold rounded-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
+                    <i class="ph-fill ph-whatsapp-logo text-green-500 text-xl"></i> Chat on WhatsApp
+                </a>
+            </div>
+
+            <!-- Stats/Social Proof -->
+            <div class="mt-12 flex justify-center gap-8 text-slate-400 grayscale opacity-70">
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-users text-2xl"></i>
+                    <span class="font-semibold text-sm">500+ Tutors</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-check-circle text-2xl"></i>
+                    <span class="font-semibold text-sm">Verified</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-map-pin text-2xl"></i>
+                    <span class="font-semibold text-sm">All Lucknow</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Parents Section -->
+    <section id="parents" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-[-2deg] hover:rotate-0 transition duration-500">
+                         <!-- Placeholder for Parent/Child Study Image -->
+                        <div class="bg-slate-200 h-96 w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <p class="font-bold text-lg">One-to-One Attention</p>
+                                <p class="text-sm opacity-90">Unlock your child's potential</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 font-semibold text-sm mb-4">
+                        <i class="ph-fill ph-tag"></i> 100% Free Service for Parents
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-6">
+                        Expert Tutors at Your Doorstep.
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                        We understand that every child is unique. KopyKitaab connects you with the most qualified tutors in Lucknow who adapt to your child's learning pace. From <strong>Class 1 to 12</strong>, CBSE, ICSE, or UP Board – we have you covered.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-brand-primary flex-shrink-0">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <span class="text-slate-700"><strong>Verified Profiles:</strong> We check ID and qualifications.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-brand-primary flex-shrink-0">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <span class="text-slate-700"><strong>Free Demo Class:</strong> Try before you hire.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="mt-1 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-brand-primary flex-shrink-0">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <span class="text-slate-700"><strong>Replacement Guarantee:</strong> Not satisfied? We find a new tutor for free.</span>
+                        </li>
+                    </ul>
+
+                    <a href="https://wa.me/919695166277?text=I%20am%20a%20parent%20looking%20for%20a%20tutor" class="inline-flex items-center gap-2 font-bold text-brand-primary hover:text-blue-700 transition">
+                        Find a Tutor Now <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Home Tuition (Filler Section) -->
+    <section id="why-us" class="py-20 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900">Why Choose Home Tuition?</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">In a crowded classroom, your child is just a roll number. At home, they are the focus.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-primary text-3xl mb-6">
+                        <i class="ph-fill ph-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Personalized Learning</h3>
+                    <p class="text-slate-600">
+                        Tutors customize lessons based on your child's weak areas, ensuring concepts are clear before moving forward.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center text-brand-accent text-3xl mb-6">
+                        <i class="ph-fill ph-shield-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Safety & Comfort</h3>
+                    <p class="text-slate-600">
+                        No travelling to coaching centers. Your child learns in the safety of your home, saving time and energy.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl hover:shadow-xl transition duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center text-brand-yellow text-3xl mb-6">
+                        <i class="ph-fill ph-chart-line-up"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Better Results</h3>
+                    <p class="text-slate-600">
+                        Focused attention leads to better grades, higher confidence, and a genuine interest in subjects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Tutors Section -->
+    <section id="tutors" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+        <!-- Abstract Decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary rounded-full blur-[100px] opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <div class="inline-block py-1 px-3 rounded-full bg-white/10 text-brand-accent border border-white/20 text-sm font-bold tracking-wide uppercase mb-4">
+                        For Teachers & Students
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6 leading-tight">
+                        Are you a Tutor? <br>
+                        <span class="text-brand-accent">Earn extra income.</span>
+                    </h2>
+                    <p class="text-slate-300 text-lg mb-8">
+                        Join Lucknow's fastest-growing tutor network. We connect you with parents near your location. Reliable payments, flexible timings, and respect for your teaching skills.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/919695166277?text=I%20am%20a%20tutor%20wanting%20to%20register" class="px-8 py-3 bg-brand-accent hover:bg-cyan-600 text-white font-bold rounded-lg transition text-center shadow-lg shadow-cyan-500/20">
+                            Register as Tutor
+                        </a>
+                        <a href="https://wa.me/919695166277" class="px-8 py-3 bg-transparent border border-white/30 hover:bg-white/10 text-white font-bold rounded-lg transition text-center flex items-center justify-center gap-2">
+                            <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                        <h3 class="text-xl font-bold mb-4">Why Join KopyKitaab?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <i class="ph-fill ph-tag text-brand-accent text-xl"></i>
+                                <span><strong>₹250</strong> connecting fee (upto 2 tuition leads*)</span>
+                            </li>
+                             <li class="flex items-center gap-3">
+                                <i class="ph-fill ph-prohibit text-brand-accent text-xl"></i>
+                                <span><strong>No Commissions</strong> (No 1st month cut)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="ph-fill ph-wallet text-brand-accent text-xl"></i>
+                                <span>Everything you earn is <strong>100% yours</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="ph-fill ph-map-pin text-brand-accent text-xl"></i>
+                                <span>Get tuitions near your locality</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="ph-fill ph-book-open-text text-2xl text-brand-primary"></i>
+                        <span class="font-heading font-bold text-xl text-white">Kopy<span class="text-brand-primary">Kitaab</span></span>
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-sm mb-4">
+                        Bridging the gap between ambitious students and expert tutors in Lucknow. We make education accessible, personalized, and effective.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#parents" class="hover:text-brand-primary transition">Find a Tutor</a></li>
+                        <li><a href="#tutors" class="hover:text-brand-primary transition">Become a Tutor</a></li>
+                        <li><a href="#why-us" class="hover:text-brand-primary transition">Why Home Tuition?</a></li>
+                        <li><a href="tel:+919695166277" class="hover:text-brand-primary transition">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-primary transition">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-brand-primary transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-primary transition">Refund Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-primary transition">Parent Agreement</a></li>
+                        <li><a href="#" class="hover:text-brand-primary transition">Tutor Agreement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2025 KopyKitaab. All rights reserved. Lucknow, UP.</p>
+                <div class="mt-2 md:mt-0 flex gap-1 items-center">
+                    <span>Helpline:</span>
+                    <a href="tel:+919695166277" class="text-white font-bold">9695166277</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const closeBtn = document.getElementById('mobile-menu-close');
+
+        function toggleMenu() {
+            const isClosed = menu.classList.contains('translate-x-full');
+            if (isClosed) {
+                // Open Menu
+                menu.classList.remove('translate-x-full');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                // Close Menu
+                menu.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
+</body>
+</html>
